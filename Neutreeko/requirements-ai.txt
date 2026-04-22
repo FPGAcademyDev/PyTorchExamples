@@ -1,0 +1,2 @@
+# Optional: PyTorch policy network and training
+torch>=2.0
