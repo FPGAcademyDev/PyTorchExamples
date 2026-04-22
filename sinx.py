@@ -8,21 +8,23 @@
 import math
 import torch
 
+N, epochs = 2000, 2000
+
 # Create random input and output data
-x = torch.linspace(-math.pi, math.pi, 2000)
+x = torch.linspace(-math.pi, math.pi, N)
 y = torch.sin(x)
 
 # Randomly initialize weights
-w = torch.randn(4, 1)
+w = torch.randn(4, 1, requires_grad=True)
 
 learning_rate = 1e-6
-for t in range(2000):
+for t in range(epochs):
     # Forward pass: compute predicted y
     # y = w_0 + w_1 x + w_2 x^2 + w_3 x^3
     y_hat = w[0] + w[1] * x + w[2] * x ** 2 + w[3] * x ** 3
 
     # Compute and print loss
-    loss = torch.square(y_hat - y).sum()
+    loss = torch.square(y_hat - y).mean()
     if t % 100 == 99:
         print(t, loss)
 

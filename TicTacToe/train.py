@@ -57,10 +57,8 @@ def main() -> None:
     args = p.parse_args()
 
     xs, ys = build_dataset()
-    print(f"xs {len(xs)}, {len(xs[0])}:")
-    print(xs)
-    print(f"ys {len(ys)}:")
-    print(ys)
+    print(f"x shape: {xs.shape}:")
+    print(f"y shape {ys.shape}:")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device: {device}")
     x_t = torch.from_numpy(xs).to(device)
