@@ -1,0 +1,6 @@
+x shape: (4520, 9):
+y shape (4520,):
+device: cpu
+epoch 1/50  loss=1.869875
+epoch 50/50  loss=0.070387
+saved ai_sweeps/policy.e50.h256.pt  (4520 positions)
