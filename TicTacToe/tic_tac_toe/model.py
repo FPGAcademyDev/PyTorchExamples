@@ -34,6 +34,13 @@ class PolicyNet(nn.Module):
             nn.Linear(hidden, 9),
         )
 
+        # Model 4 - Even bigger
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden * 32),
+        #     nn.Linear(hidden * 32, hidden * 32),
+        #     nn.Linear(hidden * 32, 9),
+        # )
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.net(x)
 

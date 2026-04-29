@@ -1,0 +1,9 @@
+run,epochs,hidden,final_loss,training_time_seconds,games_played,sub_optimal_games,train_file,play_file
+root,100,32,2.053411,49.505,822,748,train.e100.h32.txt,play.e100.h32.txt
+root,100,64,2.054536,214.209,1030,947,train.e100.h64.txt,play.e100.h64.txt
+root,100,128,2.058002,843.673,876,775,train.e100.h128.txt,play.e100.h128.txt
+root,100,256,2.065101,3096.892,947,851,train.e100.h256.txt,play.e100.h256.txt
+root,200,32,2.049591,116.558,935,848,train.e200.h32.txt,play.e200.h32.txt
+root,200,64,2.0496,429.978,1047,939,train.e200.h64.txt,play.e200.h64.txt
+root,200,128,2.056035,1732.356,1064,941,train.e200.h128.txt,play.e200.h128.txt
+root,200,256,2.059475,6234.975,995,895,train.e200.h256.txt,play.e200.h256.txt
