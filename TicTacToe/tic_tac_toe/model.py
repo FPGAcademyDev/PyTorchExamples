@@ -9,11 +9,28 @@ class PolicyNet(nn.Module):
 
     def __init__(self, hidden: int = 128) -> None:
         super().__init__()
+        # Model 1 - Original model chosen by Cursor
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, 9),
+        # )
+
+        # Model 2 - Original model but without ReLU
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden),
+        #     nn.Linear(hidden, hidden),
+        #     nn.Linear(hidden, 9),
+        # )
+
+        # Model 3 - Bigger model 2
         self.net = nn.Sequential(
             nn.Linear(9, hidden),
-            nn.ReLU(),
             nn.Linear(hidden, hidden),
-            nn.ReLU(),
+            nn.Linear(hidden, hidden),
+            nn.Linear(hidden, hidden),
             nn.Linear(hidden, 9),
         )
 
