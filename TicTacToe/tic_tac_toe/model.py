@@ -42,11 +42,11 @@ class PolicyNet(nn.Module):
         # )
 
         # Model 5 - Smaller model 1
-        self.net = nn.Sequential(
-            nn.Linear(9, hidden),
-            nn.ReLU(),
-            nn.Linear(hidden, 9),
-        )
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, 9),
+        # )
 
         # Model 6 - Bigger model 1
         # self.net = nn.Sequential(
@@ -61,8 +61,24 @@ class PolicyNet(nn.Module):
         #     nn.Linear(hidden, 9),
         # )
 
+        # Model 7 - Using Convolutional layers
+        self.conv1 = nn.Conv2d(1, hidden, kernel_size=3, padding=1)
+        self.relu1 = nn.ReLU()
+        self.conv2 = nn.Conv2d(hidden, hidden, kernel_size=3, padding=1)
+        self.relu2 = nn.ReLU()
+        self.fc = nn.Linear(hidden * 9, 9)
+
+    # Forward pass for linear models
+    # def forward(self, x: torch.Tensor) -> torch.Tensor:
+    #     return self.net(x)
+
+    # Forward pass for convolutional models
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.net(x)
+        x = x.view(-1, 1, 3, 3)
+        x = self.relu1(self.conv1(x))
+        x = self.relu2(self.conv2(x))
+        x = x.flatten(1)
+        return self.fc(x)
 
     @torch.no_grad()
     def best_move(self, board_input: torch.Tensor, legal_mask: torch.Tensor) -> int:
