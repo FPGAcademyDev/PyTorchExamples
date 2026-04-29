@@ -11,6 +11,7 @@ from typing import Dict, Tuple
 
 KEY_RE = re.compile(r"^(train|play)\.e?(\d+)\.h(\d+)\.txt$")
 LOSS_RE = re.compile(r"loss=([0-9]*\.?[0-9]+)")
+TRAIN_TIME_RE = re.compile(r"training_time_seconds=([0-9]*\.?[0-9]+)")
 GAMES_RE = re.compile(r"Total games played:\s*(\d+)")
 SUBOPT_RE = re.compile(r"Games where AI played sub-optimally:\s*(\d+)")
 
@@ -38,6 +39,13 @@ def parse_games_played(text: str) -> int | None:
     return int(m.group(1))
 
 
+def parse_training_time_seconds(text: str) -> float | None:
+    m = TRAIN_TIME_RE.search(text)
+    if not m:
+        return None
+    return float(m.group(1))
+
+
 def parse_suboptimal_games(text: str) -> int | None:
     m = SUBOPT_RE.search(text)
     if not m:
@@ -45,19 +53,27 @@ def parse_suboptimal_games(text: str) -> int | None:
     return int(m.group(1))
 
 
-def summarize_logs(input_dir: Path) -> Dict[Tuple[int, int], dict]:
-    rows: Dict[Tuple[int, int], dict] = {}
-    for path in input_dir.glob("*.txt"):
-        key = parse_key(path)
+def summarize_logs(input_dir: Path) -> Dict[Tuple[str, int, int], dict]:
+    rows: Dict[Tuple[str, int, int], dict] = {}
+    for path in input_dir.rglob("*.txt"):
+        key_parts = parse_key(path)
+        run = str(path.parent.relative_to(input_dir))
+        if run == ".":
+            run = "root"
+        if key_parts is None:
+            continue
+        key = (run, key_parts[0], key_parts[1])
         if key is None:
             continue
 
         row = rows.setdefault(
             key,
             {
-                "epochs": key[0],
-                "hidden": key[1],
+                "run": key[0],
+                "epochs": key[1],
+                "hidden": key[2],
                 "final_loss": None,
+                "training_time_seconds": None,
                 "games_played": None,
                 "sub_optimal_games": None,
                 "train_file": "",
@@ -68,6 +84,7 @@ def summarize_logs(input_dir: Path) -> Dict[Tuple[int, int], dict]:
         text = path.read_text(encoding="utf-8", errors="replace")
         if path.name.startswith("train."):
             row["final_loss"] = parse_final_loss(text)
+            row["training_time_seconds"] = parse_training_time_seconds(text)
             row["train_file"] = path.name
         elif path.name.startswith("play."):
             row["games_played"] = parse_games_played(text)
@@ -76,12 +93,14 @@ def summarize_logs(input_dir: Path) -> Dict[Tuple[int, int], dict]:
     return rows
 
 
-def write_csv(rows: Dict[Tuple[int, int], dict], output_csv: Path) -> None:
+def write_csv(rows: Dict[Tuple[str, int, int], dict], output_csv: Path) -> None:
     output_csv.parent.mkdir(parents=True, exist_ok=True)
     headers = [
+        "run",
         "epochs",
         "hidden",
         "final_loss",
+        "training_time_seconds",
         "games_played",
         "sub_optimal_games",
         "train_file",
