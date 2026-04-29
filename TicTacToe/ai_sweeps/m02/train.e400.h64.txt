@@ -1,13 +1,14 @@
 x shape: (4520, 9):
 y shape (4520,):
 device: cpu
-epoch 1/400  loss=2.090345
-epoch 50/400  loss=2.049764
-epoch 100/400  loss=2.047564
-epoch 150/400  loss=2.046724
-epoch 200/400  loss=2.046537
-epoch 250/400  loss=2.046498
-epoch 300/400  loss=2.046212
-epoch 350/400  loss=2.045948
-epoch 400/400  loss=2.045976
+epoch 1/400  loss=2.114694
+epoch 50/400  loss=2.048721
+epoch 100/400  loss=2.048486
+epoch 150/400  loss=2.047502
+epoch 200/400  loss=2.046659
+epoch 250/400  loss=2.046345
+epoch 300/400  loss=2.046448
+epoch 350/400  loss=2.046074
+epoch 400/400  loss=2.045559
+training_time_seconds=28.068
 saved ai_sweeps/m02/policy.e400.h64.pt  (4520 positions)

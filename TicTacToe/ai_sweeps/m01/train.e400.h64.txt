@@ -1,13 +1,14 @@
 x shape: (4520, 9):
 y shape (4520,):
 device: cpu
-epoch 1/400  loss=2.073110
-epoch 50/400  loss=0.283650
-epoch 100/400  loss=0.181304
-epoch 150/400  loss=0.118012
-epoch 200/400  loss=0.077939
-epoch 250/400  loss=0.043564
-epoch 300/400  loss=0.027915
-epoch 350/400  loss=0.013710
-epoch 400/400  loss=0.005528
-saved ai_sweeps/policy.e400.h64.pt  (4520 positions)
+epoch 1/400  loss=2.082625
+epoch 50/400  loss=0.300816
+epoch 100/400  loss=0.189186
+epoch 150/400  loss=0.133000
+epoch 200/400  loss=0.088124
+epoch 250/400  loss=0.055443
+epoch 300/400  loss=0.030572
+epoch 350/400  loss=0.016504
+epoch 400/400  loss=0.011856
+training_time_seconds=48.781
+saved ai_sweeps/m01/policy.e400.h64.pt  (4520 positions)

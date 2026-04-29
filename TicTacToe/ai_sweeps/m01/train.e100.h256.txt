@@ -1,7 +1,8 @@
 x shape: (4520, 9):
 y shape (4520,):
 device: cpu
-epoch 1/100  loss=1.893430
-epoch 50/100  loss=0.073420
-epoch 100/100  loss=0.004542
-saved ai_sweeps/policy.e100.h256.pt  (4520 positions)
+epoch 1/100  loss=1.923009
+epoch 50/100  loss=0.075835
+epoch 100/100  loss=0.004796
+training_time_seconds=7.757
+saved ai_sweeps/m01/policy.e100.h256.pt  (4520 positions)
