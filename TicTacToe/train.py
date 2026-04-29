@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import time
 from collections import deque
 from pathlib import Path
 
@@ -69,6 +70,7 @@ def main() -> None:
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
     loss_fn = nn.CrossEntropyLoss()
 
+    train_start = time.perf_counter()
     for epoch in range(args.epochs):
         total = 0.0
         for xb, yb in loader:
@@ -81,6 +83,8 @@ def main() -> None:
         avg = total / len(x_t)
         if (epoch + 1) % 50 == 0 or epoch == 0:
             print(f"epoch {epoch + 1}/{args.epochs}  loss={avg:.6f}")
+    train_seconds = time.perf_counter() - train_start
+    print(f"training_time_seconds={train_seconds:.3f}")
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     torch.save(
