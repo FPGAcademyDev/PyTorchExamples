@@ -1,0 +1,21 @@
+x shape: (4520, 9):
+y shape (4520,):
+device: cpu
+epoch 1/750  loss=2.027534
+epoch 50/750  loss=0.314445
+epoch 100/750  loss=0.241451
+epoch 150/750  loss=0.192077
+epoch 200/750  loss=0.154609
+epoch 250/750  loss=0.120641
+epoch 300/750  loss=0.095417
+epoch 350/750  loss=0.072152
+epoch 400/750  loss=0.055521
+epoch 450/750  loss=0.041793
+epoch 500/750  loss=0.030516
+epoch 550/750  loss=0.021854
+epoch 600/750  loss=0.015918
+epoch 650/750  loss=0.010519
+epoch 700/750  loss=0.007544
+epoch 750/750  loss=0.005133
+training_time_seconds=30.961
+saved ai_sweeps/m05/policy.e750.h256.pt  (4520 positions)

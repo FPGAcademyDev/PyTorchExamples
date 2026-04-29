@@ -26,19 +26,39 @@ class PolicyNet(nn.Module):
         # )
 
         # Model 3 - Bigger model 2
-        self.net = nn.Sequential(
-            nn.Linear(9, hidden),
-            nn.Linear(hidden, hidden),
-            nn.Linear(hidden, hidden),
-            nn.Linear(hidden, hidden),
-            nn.Linear(hidden, 9),
-        )
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden),
+        #     nn.Linear(hidden, hidden),
+        #     nn.Linear(hidden, hidden),
+        #     nn.Linear(hidden, hidden),
+        #     nn.Linear(hidden, 9),
+        # )
 
         # Model 4 - Even bigger
         # self.net = nn.Sequential(
         #     nn.Linear(9, hidden * 32),
         #     nn.Linear(hidden * 32, hidden * 32),
         #     nn.Linear(hidden * 32, 9),
+        # )
+
+        # Model 5 - Smaller model 1
+        self.net = nn.Sequential(
+            nn.Linear(9, hidden),
+            nn.ReLU(),
+            nn.Linear(hidden, 9),
+        )
+
+        # Model 6 - Bigger model 1
+        # self.net = nn.Sequential(
+        #     nn.Linear(9, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, hidden),
+        #     nn.ReLU(),
+        #     nn.Linear(hidden, 9),
         # )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:

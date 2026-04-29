@@ -1,0 +1,8 @@
+Using device: cpu
+[AI as X] games=94, suboptimal_games=12
+[AI as O] games=655, suboptimal_games=322
+
+AI Test Mode Results
+Total games played: 749
+Games where AI played sub-optimally: 334
+Moves of one sub-optimal game: 0 0 -> 1 0 -> 0 1 -> 0 2 -> 1 1 -> 2 2 -> 1 2 -> 2 0 -> 2 1
