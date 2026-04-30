@@ -1,0 +1,38 @@
+x shape: (4520, 9):
+y shape (4520,):
+device: cpu
+epoch 1/800  loss=2.087946  training_time_seconds=0.041
+epoch 50/800  loss=0.405682  training_time_seconds=1.735
+saved ai_sweeps/m05/policy.h64.e50.pt
+epoch 100/800  loss=0.337815  training_time_seconds=3.457
+saved ai_sweeps/m05/policy.h64.e100.pt
+epoch 150/800  loss=0.309832  training_time_seconds=5.162
+saved ai_sweeps/m05/policy.h64.e150.pt
+epoch 200/800  loss=0.291024  training_time_seconds=6.885
+saved ai_sweeps/m05/policy.h64.e200.pt
+epoch 250/800  loss=0.272826  training_time_seconds=8.608
+saved ai_sweeps/m05/policy.h64.e250.pt
+epoch 300/800  loss=0.258060  training_time_seconds=10.315
+saved ai_sweeps/m05/policy.h64.e300.pt
+epoch 350/800  loss=0.245310  training_time_seconds=12.017
+saved ai_sweeps/m05/policy.h64.e350.pt
+epoch 400/800  loss=0.233162  training_time_seconds=13.724
+saved ai_sweeps/m05/policy.h64.e400.pt
+epoch 450/800  loss=0.223729  training_time_seconds=15.513
+saved ai_sweeps/m05/policy.h64.e450.pt
+epoch 500/800  loss=0.214780  training_time_seconds=17.304
+saved ai_sweeps/m05/policy.h64.e500.pt
+epoch 550/800  loss=0.207782  training_time_seconds=19.050
+saved ai_sweeps/m05/policy.h64.e550.pt
+epoch 600/800  loss=0.199545  training_time_seconds=20.815
+saved ai_sweeps/m05/policy.h64.e600.pt
+epoch 650/800  loss=0.191659  training_time_seconds=22.587
+saved ai_sweeps/m05/policy.h64.e650.pt
+epoch 700/800  loss=0.186379  training_time_seconds=24.363
+saved ai_sweeps/m05/policy.h64.e700.pt
+epoch 750/800  loss=0.180969  training_time_seconds=26.140
+saved ai_sweeps/m05/policy.h64.e750.pt
+epoch 800/800  loss=0.176421  training_time_seconds=27.842
+saved ai_sweeps/m05/policy.h64.e800.pt
+training_time_seconds=27.842
+  (4520 positions)
