@@ -73,7 +73,13 @@ def main() -> None:
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--batch", type=int, default=64)
     p.add_argument("--hidden", type=int, default=128)
-    p.add_argument("--model", type=int, choices=range(1, 8), default=1, help="Policy model number (1-7)")
+    p.add_argument(
+        "--model",
+        type=int,
+        choices=range(1, PolicyNet.NUM_MODELS + 1),
+        default=1,
+        help=f"Policy model number (1..{PolicyNet.NUM_MODELS})",
+    )
     p.add_argument("--out", type=Path, default=Path("policy.pt"))
     args = p.parse_args()
 

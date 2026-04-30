@@ -133,7 +133,13 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--weights", type=Path, default=Path("policy.pt"))
     ap.add_argument("--human", choices=("X", "O"), default="X", help="Human plays this side (X goes first)")
-    ap.add_argument("--model", type=int, choices=range(1, 8), default=None, help="Policy model number (1-7)")
+    ap.add_argument(
+        "--model",
+        type=int,
+        choices=range(1, PolicyNet.NUM_MODELS + 1),
+        default=None,
+        help=f"Policy model number (1..{PolicyNet.NUM_MODELS}); default: checkpoint value",
+    )
     ap.add_argument(
         "--test-ai",
         action="store_true",

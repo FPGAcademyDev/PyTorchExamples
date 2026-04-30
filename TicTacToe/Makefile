@@ -1,6 +1,6 @@
 .PHONY: train-sweep play-sweep summarize-sweep full-sweep
 
-# Policy architecture (1–7); override e.g. make train-sweep MODEL=7
+# Policy architecture index (1 .. PolicyNet.NUM_MODELS); override e.g. make train-sweep MODEL=7
 MODEL := 1
 
 SWEEP_DIR := ai_sweeps/m0$(MODEL)
