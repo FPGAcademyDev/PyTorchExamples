@@ -48,6 +48,24 @@ def build_dataset() -> tuple[np.ndarray, np.ndarray]:
     return xs, ys
 
 
+def checkpoint_name(out: Path, epoch: int, hidden: int) -> Path:
+    """$P.h$H.e$E.pt where P is --out with its file suffix removed."""
+    p = str(out.with_suffix(""))
+    return Path(f"{p}.h{hidden}.e{epoch}.pt")
+
+
+def save_weights(path: Path, model: nn.Module, hidden: int) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(
+        {
+            "state_dict": model.state_dict(),
+            "hidden": hidden,
+        },
+        path,
+    )
+    print(f"saved {path}")
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--epochs", type=int, default=400)
@@ -81,20 +99,16 @@ def main() -> None:
             opt.step()
             total += float(loss.item()) * xb.size(0)
         avg = total / len(x_t)
-        if (epoch + 1) % 50 == 0 or epoch == 0:
-            print(f"epoch {epoch + 1}/{args.epochs}  loss={avg:.6f}")
+        e = epoch + 1
+        if e % 50 == 0 or epoch == 0:
+            elapsed = time.perf_counter() - train_start
+            print(f"epoch {e}/{args.epochs}  loss={avg:.6f}  training_time_seconds={elapsed:.3f}")
+        if e % 50 == 0:
+            save_weights(checkpoint_name(args.out, e, args.hidden), model, args.hidden)
     train_seconds = time.perf_counter() - train_start
     print(f"training_time_seconds={train_seconds:.3f}")
 
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(
-        {
-            "state_dict": model.state_dict(),
-            "hidden": args.hidden,
-        },
-        args.out,
-    )
-    print(f"saved {args.out}  ({len(xs)} positions)")
+    print(f"  ({len(xs)} positions)")
 
 
 if __name__ == "__main__":
