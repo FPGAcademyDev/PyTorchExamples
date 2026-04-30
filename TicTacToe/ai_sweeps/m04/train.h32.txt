@@ -1,0 +1,38 @@
+x shape: (4520, 9):
+y shape (4520,):
+device: cpu
+epoch 1/800  loss=2.191572  training_time_seconds=0.601
+epoch 50/800  loss=2.053521  training_time_seconds=29.387
+saved ai_sweeps/m04/policy.h32.e50.pt
+epoch 100/800  loss=2.055088  training_time_seconds=58.292
+saved ai_sweeps/m04/policy.h32.e100.pt
+epoch 150/800  loss=2.054479  training_time_seconds=87.793
+saved ai_sweeps/m04/policy.h32.e150.pt
+epoch 200/800  loss=2.048140  training_time_seconds=116.272
+saved ai_sweeps/m04/policy.h32.e200.pt
+epoch 250/800  loss=2.046898  training_time_seconds=146.110
+saved ai_sweeps/m04/policy.h32.e250.pt
+epoch 300/800  loss=2.047103  training_time_seconds=175.687
+saved ai_sweeps/m04/policy.h32.e300.pt
+epoch 350/800  loss=2.046371  training_time_seconds=205.528
+saved ai_sweeps/m04/policy.h32.e350.pt
+epoch 400/800  loss=2.048463  training_time_seconds=234.827
+saved ai_sweeps/m04/policy.h32.e400.pt
+epoch 450/800  loss=2.049963  training_time_seconds=264.561
+saved ai_sweeps/m04/policy.h32.e450.pt
+epoch 500/800  loss=2.045631  training_time_seconds=293.928
+saved ai_sweeps/m04/policy.h32.e500.pt
+epoch 550/800  loss=2.046196  training_time_seconds=323.518
+saved ai_sweeps/m04/policy.h32.e550.pt
+epoch 600/800  loss=2.045550  training_time_seconds=353.019
+saved ai_sweeps/m04/policy.h32.e600.pt
+epoch 650/800  loss=2.048060  training_time_seconds=382.551
+saved ai_sweeps/m04/policy.h32.e650.pt
+epoch 700/800  loss=2.045910  training_time_seconds=411.751
+saved ai_sweeps/m04/policy.h32.e700.pt
+epoch 750/800  loss=2.046699  training_time_seconds=441.422
+saved ai_sweeps/m04/policy.h32.e750.pt
+epoch 800/800  loss=2.046053  training_time_seconds=471.040
+saved ai_sweeps/m04/policy.h32.e800.pt
+training_time_seconds=471.044
+  (4520 positions)
