@@ -54,12 +54,13 @@ def checkpoint_name(out: Path, epoch: int, hidden: int) -> Path:
     return Path(f"{p}.h{hidden}.e{epoch}.pt")
 
 
-def save_weights(path: Path, model: nn.Module, hidden: int) -> None:
+def save_weights(path: Path, model: nn.Module, hidden: int, model_num: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     torch.save(
         {
             "state_dict": model.state_dict(),
             "hidden": hidden,
+            "model_num": model_num,
         },
         path,
     )
@@ -72,6 +73,7 @@ def main() -> None:
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--batch", type=int, default=64)
     p.add_argument("--hidden", type=int, default=128)
+    p.add_argument("--model", type=int, choices=range(1, 8), default=1, help="Policy model number (1-7)")
     p.add_argument("--out", type=Path, default=Path("policy.pt"))
     args = p.parse_args()
 
@@ -84,7 +86,7 @@ def main() -> None:
     y_t = torch.from_numpy(ys).to(device)
     loader = DataLoader(TensorDataset(x_t, y_t), batch_size=args.batch, shuffle=True)
 
-    model = PolicyNet(hidden=args.hidden).to(device)
+    model = PolicyNet(hidden=args.hidden, model_num=args.model).to(device)
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
     loss_fn = nn.CrossEntropyLoss()
 
@@ -104,7 +106,7 @@ def main() -> None:
             elapsed = time.perf_counter() - train_start
             print(f"epoch {e}/{args.epochs}  loss={avg:.6f}  training_time_seconds={elapsed:.3f}")
         if e % 50 == 0:
-            save_weights(checkpoint_name(args.out, e, args.hidden), model, args.hidden)
+            save_weights(checkpoint_name(args.out, e, args.hidden), model, args.hidden, args.model)
     train_seconds = time.perf_counter() - train_start
     print(f"training_time_seconds={train_seconds:.3f}")
 

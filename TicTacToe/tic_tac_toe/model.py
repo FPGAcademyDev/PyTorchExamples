@@ -7,78 +7,76 @@ import torch.nn as nn
 class PolicyNet(nn.Module):
     """Maps 9-d board encoding to 9 move logits."""
 
-    def __init__(self, hidden: int = 128) -> None:
+    def __init__(self, hidden: int = 128, model_num: int = 1) -> None:
         super().__init__()
-        # Model 1 - Original model chosen by Cursor
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, 9),
-        # )
+        if model_num == 1:
+            # Model 1 - Original model chosen by Cursor
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, 9),
+            )
+        elif model_num == 2:
+            # Model 2 - Original model but without ReLU
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden),
+                nn.Linear(hidden, hidden),
+                nn.Linear(hidden, 9),
+            )
+        elif model_num == 3:
+            # Model 3 - Bigger model 2
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden),
+                nn.Linear(hidden, hidden),
+                nn.Linear(hidden, hidden),
+                nn.Linear(hidden, hidden),
+                nn.Linear(hidden, 9),
+            )
+        elif model_num == 4:
+            # Model 4 - Even bigger
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden * 32),
+                nn.Linear(hidden * 32, hidden * 32),
+                nn.Linear(hidden * 32, 9),
+            )
+        elif model_num == 5:
+            # Model 5 - Smaller model 1
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, 9),
+            )
+        elif model_num == 6:
+            # Model 6 - Bigger model 1
+            self.net = nn.Sequential(
+                nn.Linear(9, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, hidden),
+                nn.ReLU(),
+                nn.Linear(hidden, 9),
+            )
+        elif model_num == 7:
+            # Model 7 - Two convolutional layers over 3x3 board
+            self.net = nn.Sequential(
+                nn.Unflatten(1, (1, 3, 3)),
+                nn.Conv2d(1, hidden, kernel_size=3, padding=1),
+                nn.ReLU(),
+                nn.Conv2d(hidden, hidden, kernel_size=3, padding=1),
+                nn.ReLU(),
+                nn.Flatten(1),
+                nn.Linear(hidden * 9, 9),
+            )
+        else:
+            raise ValueError(f"Unsupported model_num={model_num}; expected 1-7")
 
-        # Model 2 - Original model but without ReLU
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden),
-        #     nn.Linear(hidden, hidden),
-        #     nn.Linear(hidden, 9),
-        # )
-
-        # Model 3 - Bigger model 2
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden),
-        #     nn.Linear(hidden, hidden),
-        #     nn.Linear(hidden, hidden),
-        #     nn.Linear(hidden, hidden),
-        #     nn.Linear(hidden, 9),
-        # )
-
-        # Model 4 - Even bigger
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden * 32),
-        #     nn.Linear(hidden * 32, hidden * 32),
-        #     nn.Linear(hidden * 32, 9),
-        # )
-
-        # Model 5 - Smaller model 1
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, 9),
-        # )
-
-        # Model 6 - Bigger model 1
-        # self.net = nn.Sequential(
-        #     nn.Linear(9, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, hidden),
-        #     nn.ReLU(),
-        #     nn.Linear(hidden, 9),
-        # )
-
-        # Model 7 - Using Convolutional layers
-        self.conv1 = nn.Conv2d(1, hidden, kernel_size=3, padding=1)
-        self.relu1 = nn.ReLU()
-        self.conv2 = nn.Conv2d(hidden, hidden, kernel_size=3, padding=1)
-        self.relu2 = nn.ReLU()
-        self.fc = nn.Linear(hidden * 9, 9)
-
-    # Forward pass for linear models
-    # def forward(self, x: torch.Tensor) -> torch.Tensor:
-    #     return self.net(x)
-
-    # Forward pass for convolutional models
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = x.view(-1, 1, 3, 3)
-        x = self.relu1(self.conv1(x))
-        x = self.relu2(self.conv2(x))
-        x = x.flatten(1)
-        return self.fc(x)
+        return self.net(x)
 
     @torch.no_grad()
     def best_move(self, board_input: torch.Tensor, legal_mask: torch.Tensor) -> int:

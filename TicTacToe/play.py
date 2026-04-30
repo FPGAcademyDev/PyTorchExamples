@@ -29,10 +29,11 @@ def print_board(b: Board) -> None:
     print()
 
 
-def load_model(path: Path, device: torch.device) -> PolicyNet:
+def load_model(path: Path, device: torch.device, model_num: int | None) -> PolicyNet:
     ckpt = torch.load(path, map_location=device, weights_only=True)
     hidden = int(ckpt.get("hidden", 128))
-    m = PolicyNet(hidden=hidden).to(device)
+    chosen_model = int(ckpt.get("model_num", 1)) if model_num is None else model_num
+    m = PolicyNet(hidden=hidden, model_num=chosen_model).to(device)
     m.load_state_dict(ckpt["state_dict"])
     m.eval()
     return m
@@ -132,6 +133,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--weights", type=Path, default=Path("policy.pt"))
     ap.add_argument("--human", choices=("X", "O"), default="X", help="Human plays this side (X goes first)")
+    ap.add_argument("--model", type=int, choices=range(1, 8), default=None, help="Policy model number (1-7)")
     ap.add_argument(
         "--test-ai",
         action="store_true",
@@ -144,7 +146,7 @@ def main() -> None:
     if not args.weights.is_file():
         raise SystemExit(f"Missing {args.weights}. Run: python train.py")
 
-    net = load_model(args.weights, device)
+    net = load_model(args.weights, device, args.model)
     if args.test_ai:
         print_ai_test_results(net, device)
         return

@@ -1,0 +1,22 @@
+x shape: (4520, 9):
+y shape (4520,):
+device: cpu
+epoch 1/400  loss=2.016808  training_time_seconds=0.280
+epoch 50/400  loss=0.196463  training_time_seconds=9.246
+saved ai_sweeps/m07/policy.h32.e50.pt
+epoch 100/400  loss=0.083945  training_time_seconds=14.441
+saved ai_sweeps/m07/policy.h32.e100.pt
+epoch 150/400  loss=0.026972  training_time_seconds=18.707
+saved ai_sweeps/m07/policy.h32.e150.pt
+epoch 200/400  loss=0.006757  training_time_seconds=27.060
+saved ai_sweeps/m07/policy.h32.e200.pt
+epoch 250/400  loss=0.002527  training_time_seconds=36.545
+saved ai_sweeps/m07/policy.h32.e250.pt
+epoch 300/400  loss=0.001515  training_time_seconds=46.129
+saved ai_sweeps/m07/policy.h32.e300.pt
+epoch 350/400  loss=0.001619  training_time_seconds=55.993
+saved ai_sweeps/m07/policy.h32.e350.pt
+epoch 400/400  loss=0.000545  training_time_seconds=64.946
+saved ai_sweeps/m07/policy.h32.e400.pt
+training_time_seconds=64.947
+  (4520 positions)
