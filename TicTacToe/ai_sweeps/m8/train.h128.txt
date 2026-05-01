@@ -1,22 +1,38 @@
 x shape: (4520, 9):
 y shape (4520,):
 device: cpu
-epoch 1/400  loss=1.925550  training_time_seconds=0.148
-epoch 50/400  loss=0.315266  training_time_seconds=7.096
+epoch 1/800  loss=1.926665  training_time_seconds=0.150
+epoch 50/800  loss=0.314790  training_time_seconds=7.188
 saved ai_sweeps/m8/policy.h128.e50.pt
-epoch 100/400  loss=0.236539  training_time_seconds=14.183
+epoch 100/800  loss=0.235826  training_time_seconds=14.354
 saved ai_sweeps/m8/policy.h128.e100.pt
-epoch 150/400  loss=0.176252  training_time_seconds=21.266
+epoch 150/800  loss=0.174985  training_time_seconds=21.533
 saved ai_sweeps/m8/policy.h128.e150.pt
-epoch 200/400  loss=0.138158  training_time_seconds=28.365
+epoch 200/800  loss=0.135392  training_time_seconds=28.703
 saved ai_sweeps/m8/policy.h128.e200.pt
-epoch 250/400  loss=0.101592  training_time_seconds=35.459
+epoch 250/800  loss=0.100247  training_time_seconds=35.853
 saved ai_sweeps/m8/policy.h128.e250.pt
-epoch 300/400  loss=0.072811  training_time_seconds=42.545
+epoch 300/800  loss=0.074653  training_time_seconds=43.052
 saved ai_sweeps/m8/policy.h128.e300.pt
-epoch 350/400  loss=0.056237  training_time_seconds=49.627
+epoch 350/800  loss=0.053788  training_time_seconds=50.199
 saved ai_sweeps/m8/policy.h128.e350.pt
-epoch 400/400  loss=0.038705  training_time_seconds=56.725
+epoch 400/800  loss=0.038950  training_time_seconds=57.397
 saved ai_sweeps/m8/policy.h128.e400.pt
-training_time_seconds=56.726
+epoch 450/800  loss=0.027585  training_time_seconds=64.602
+saved ai_sweeps/m8/policy.h128.e450.pt
+epoch 500/800  loss=0.021506  training_time_seconds=71.896
+saved ai_sweeps/m8/policy.h128.e500.pt
+epoch 550/800  loss=0.013587  training_time_seconds=79.443
+saved ai_sweeps/m8/policy.h128.e550.pt
+epoch 600/800  loss=0.010859  training_time_seconds=87.427
+saved ai_sweeps/m8/policy.h128.e600.pt
+epoch 650/800  loss=0.006572  training_time_seconds=95.922
+saved ai_sweeps/m8/policy.h128.e650.pt
+epoch 700/800  loss=0.005559  training_time_seconds=104.872
+saved ai_sweeps/m8/policy.h128.e700.pt
+epoch 750/800  loss=0.041127  training_time_seconds=114.202
+saved ai_sweeps/m8/policy.h128.e750.pt
+epoch 800/800  loss=0.002591  training_time_seconds=124.075
+saved ai_sweeps/m8/policy.h128.e800.pt
+training_time_seconds=124.076
   (4520 positions)

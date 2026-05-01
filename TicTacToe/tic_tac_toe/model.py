@@ -8,7 +8,7 @@ class PolicyNet(nn.Module):
     """Maps 9-d board encoding to 9 move logits."""
 
     #: Highest supported index; valid ``model_num`` values are ``1 .. NUM_MODELS`` inclusive.
-    NUM_MODELS = 8
+    NUM_MODELS = 9
 
     def __init__(self, hidden: int = 128, model_num: int = 1) -> None:
         super().__init__()
@@ -81,10 +81,23 @@ class PolicyNet(nn.Module):
                 nn.Linear(hidden * 9, 9),
             )
         elif mn == 8:
-            # Model 8 - Like model 7 but single Conv2d over 3x3 board
+            # Model 8 - Like model 7 but single Conv2d layer over 3x3 board
             self.net = nn.Sequential(
                 nn.Unflatten(1, (1, 3, 3)),
                 nn.Conv2d(1, hidden, kernel_size=3, padding=1),
+                nn.ReLU(),
+                nn.Flatten(1),
+                nn.Linear(hidden * 9, 9),
+            )
+        elif mn == 9:
+            # Model 9 - Like model 7 but with three Conv2d layers over 3x3 board
+            self.net = nn.Sequential(
+                nn.Unflatten(1, (1, 3, 3)),
+                nn.Conv2d(1, hidden, kernel_size=3, padding=1),
+                nn.ReLU(),
+                nn.Conv2d(hidden, hidden, kernel_size=3, padding=1),
+                nn.ReLU(),
+                nn.Conv2d(hidden, hidden, kernel_size=3, padding=1),
                 nn.ReLU(),
                 nn.Flatten(1),
                 nn.Linear(hidden * 9, 9),
